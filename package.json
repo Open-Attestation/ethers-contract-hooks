@@ -1,0 +1,138 @@
+{
+  "name": "ethers-react-hook",
+  "version": "0.0.0-development",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "main": "build/index.js",
+  "module": "build/esm/index.js",
+  "types": "build//esm/index.d.ts",
+  "dependencies": {
+    "debug": "^4.1.1"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack --mode production && tsc --module es6 --declaration --outDir build/esm",
+    "example": "webpack-dev-server --config ./example/webpack.config.js",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "npm run lint -- --fix",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook -o docs",
+    "test": "jest --ci",
+    "test:coverage": "npm run test -- --coverage",
+    "test:watch": "npm run test -- --watch",
+    "semantic-release": "semantic-release"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.5.5",
+    "@babel/plugin-proposal-optional-chaining": "7.2.0",
+    "@babel/preset-env": "7.5.5",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@govtechsg/document-store": "^1.0.1",
+    "@storybook/addon-actions": "5.2.1",
+    "@storybook/addon-docs": "5.2.1",
+    "@storybook/addons": "5.2.1",
+    "@storybook/react": "5.2.1",
+    "@testing-library/react": "9.1.4",
+    "@types/debug": "4.1.5",
+    "@types/jest": "24.0.18",
+    "@types/react": "16.9.2",
+    "@typescript-eslint/eslint-plugin": "2.1.0",
+    "@typescript-eslint/parser": "2.1.0",
+    "babel-jest": "24.9.0",
+    "babel-loader": "8.0.6",
+    "eslint": "6.3.0",
+    "eslint-config-prettier": "6.2.0",
+    "eslint-plugin-jest": "22.16.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react-hooks": "2.0.1",
+    "jest": "24.9.0",
+    "prettier": "1.18.2",
+    "react": "16.9.0",
+    "react-component-component": "1.2.1",
+    "react-docgen-typescript-loader": "3.2.0",
+    "react-dom": "16.9.0",
+    "react-frame-component": "^4.1.1",
+    "semantic-release": "^15.14.0",
+    "typescript": "3.5.3",
+    "webpack": "4.39.3",
+    "webpack-cli": "3.3.7",
+    "webpack-dev-server": "3.8.0"
+  },
+  "license": "GPL-3.0",
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-typescript",
+      "@babel/preset-react"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:jest/all",
+      "plugin:prettier/recommended",
+      "prettier/@typescript-eslint",
+      "prettier/react"
+    ],
+    "plugins": [
+      "react-hooks"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "rules": {
+      "@typescript-eslint/explicit-function-return-type": [
+        "warn",
+        {
+          "allowExpressions": true,
+          "allowTypedFunctionExpressions": true
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": "off",
+      "react/prop-types": "off",
+      "react/self-closing-comp": "error",
+      "jest/prefer-expect-assertions": "off",
+      "array-callback-return": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "error"
+    }
+  },
+  "jest": {
+    "coverageDirectory": "coverage"
+  },
+  "prettier": {
+    "printWidth": 120
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Open-Attestation/decentralized-renderer-react-components.git"
+  }
+}
