@@ -21,4 +21,4 @@ Automagically generate hooks from Ethers.js contract functions.
 - `npm run storybook`: to start storybook, create stories and visualize the different component
 - `npm run test`: to run tests
 - `npm run lint`: to run lint
-- `npm run example:application`: to run the example build with the library to develop an hosting application. Don't forget to update the example if you update this library.
+- `npm run example`: to run the example build with the library to develop an hosting application. Don't forget to update the example if you update this library.
