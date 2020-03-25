@@ -5,12 +5,14 @@ import { DocumentStore } from "./contracts/DocumentStore";
 import { ContractReceipt } from "ethers/contract";
 
 type ContractFunctionState = "UNINITIALIZED" | "INITIALIZED" | "PENDING_CONFIRMATION" | "CONFIRMED" | "ERROR";
+type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
 
 export function useContractFunctionHook<T extends Contract, S extends keyof T["functions"]>(contract: T, method: S) {
   const [state, setState] = useState<ContractFunctionState>("UNINITIALIZED");
   const [receipt, setReceipt] = useState<ContractReceipt>();
   const [transaction, setTransaction] = useState<ContractTransaction>();
   const [error, setError] = useState<Error>();
+  const [value, setValue] = useState<UnwrapPromise<ReturnType<T["functions"][S]>>>();
 
   // Reset state is added to allow the same hook to be used for multiple transactions although
   // it is highly unrecommended.
@@ -39,11 +41,26 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
     }
   }) as T["functions"][S];
 
+  const call = (async (...params: any[]) => {
+    resetState();
+    const contractMethod = contract.functions[method as string];
+    const deferredTx = contractMethod(...params);
+    setState("INITIALIZED");
+    try {
+      const response = await deferredTx;
+      setState("CONFIRMED");
+      setValue(response);
+    } catch (e) {
+      setError(e);
+      setState("ERROR");
+    }
+  }) as T["functions"][S];
+
   const transactionHash = transaction?.hash;
   const events = receipt?.events;
   const errorMessage = error?.message;
 
-  return { state, events, send, receipt, transaction, transactionHash, errorMessage };
+  return { state,call, events, send, receipt, transaction, transactionHash, errorMessage, error, value };
 }
 
 const provider = new providers.JsonRpcProvider();
@@ -55,11 +72,16 @@ export const TestHook = ({ contract }: { contract: DocumentStore }) => {
   const handleTransaction = () => {
     send(hash);
   };
-
+  const { call, value } = useContractFunctionHook(contract, "isIssued");
+  const handleCheck = () => {
+    call(hash);
+  }
+  
   return (
     <div data-testid="hello-world">
       <input value={hash} onChange={(e) => setHash(e.target.value)} style={{width: "100%"}}></input>
       <button onClick={handleTransaction}>Issue Merkle Root</button>
+      <button onClick={handleCheck}>Is Issued? {JSON.stringify(value,null,2)} </button>
       <h2>Summary</h2>
       <p>Transaction State: {state}</p>
       <p>Transaction Hash: {transactionHash}</p>
