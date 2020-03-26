@@ -68,7 +68,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
 }
 
 const provider = new providers.JsonRpcProvider();
-const signer = new Wallet("cd1452521e0bdbe560466fcc9e43fbebc9667d5fa7f5112cad7754553c6f7567", provider);
+const signer = new Wallet("0x20018b5ca33b3a09dca347462658dcf8700f9bb50ece70ea1bde157dc0902b6e", provider);
 
 export const TestHook = ({ contract }: { contract: DocumentStore }) => {
   const { state, send, events, receipt, transaction, transactionHash, errorMessage } = useContractFunctionHook(contract, "issue");
@@ -104,7 +104,7 @@ export const TestHookContainer: FunctionComponent = () => {
   const [contract, setContract] = useState<DocumentStore>();
   useEffect(() => {
     connect(
-      "0xD3C951dBE13CF63E112c42dF8a92d0faB7eC219c",
+      "0xbC860c24583e4771b37DE92BCa37e74b442f0855",
       signer
     ).then(setContract);
   }, []);
