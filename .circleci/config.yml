@@ -20,4 +20,3 @@ jobs:
       - run:
           name: release
           command: npm run semantic-release
-          context: NPM Deployment
