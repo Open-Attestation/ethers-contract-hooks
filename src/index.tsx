@@ -7,6 +7,10 @@ import { ContractReceipt } from "ethers/contract";
 type ContractFunctionState = "UNINITIALIZED" | "INITIALIZED" | "PENDING_CONFIRMATION" | "CONFIRMED" | "ERROR";
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
 
+// Todo
+// Deploy
+// Deploy & Initialize
+
 export function useContractFunctionHook<T extends Contract, S extends keyof T["functions"]>(contract: T, method: S) {
   const [state, setState] = useState<ContractFunctionState>("UNINITIALIZED");
   const [receipt, setReceipt] = useState<ContractReceipt>();
