@@ -1,5 +1,5 @@
 {
-  "name": "ethers-react-hook",
+  "name": "ethers-contract-hook",
   "version": "0.0.0-development",
   "publishConfig": {
     "access": "public"
@@ -7,9 +7,10 @@
   "sideEffects": false,
   "main": "build/index.js",
   "module": "build/esm/index.js",
-  "types": "build//esm/index.d.ts",
+  "types": "build/esm/index.d.ts",
   "dependencies": {
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "ethers": "^4.0.46"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --mode production && tsc --module es6 --declaration --outDir build/esm",
@@ -21,18 +22,19 @@
     "test": "jest --ci",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "ganache": "ganache-cli"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "7.2.0",
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
-    "@babel/preset-typescript": "7.3.3",
-    "@govtechsg/document-store": "^1.0.1",
+    "@babel/preset-typescript": "^7.9.0",
     "@storybook/addon-actions": "5.2.1",
     "@storybook/addon-docs": "5.2.1",
     "@storybook/addons": "5.2.1",
@@ -42,18 +44,18 @@
     "@types/debug": "4.1.5",
     "@types/jest": "24.0.18",
     "@types/react": "16.9.2",
-    "@typescript-eslint/eslint-plugin": "2.1.0",
-    "@typescript-eslint/parser": "2.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
     "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
-    "eslint": "6.3.0",
-    "eslint-config-prettier": "6.2.0",
-    "eslint-plugin-jest": "22.16.0",
-    "eslint-plugin-prettier": "3.1.0",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "2.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "jest": "24.9.0",
-    "prettier": "1.18.2",
+    "prettier": "^2.0.2",
     "react": "16.9.0",
     "react-component-component": "1.2.1",
     "react-docgen-typescript-loader": "3.2.0",
@@ -61,7 +63,7 @@
     "react-frame-component": "^4.1.1",
     "react-test-renderer": "^16.13.1",
     "semantic-release": "^15.14.0",
-    "typescript": "3.5.3",
+    "typescript": "^3.8.3",
     "webpack": "4.39.3",
     "webpack-cli": "3.3.7",
     "webpack-dev-server": "3.8.0"
@@ -81,6 +83,7 @@
       "@babel/preset-react"
     ],
     "plugins": [
+      "@babel/plugin-proposal-nullish-coalescing-operator",
       "@babel/plugin-proposal-optional-chaining"
     ]
   },
@@ -131,13 +134,28 @@
     }
   },
   "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build"
+    ],
     "coverageDirectory": "coverage"
   },
   "prettier": {
-    "printWidth": 120
+    "printWidth": 120,
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx"
+        ],
+        "options": {
+          "parser": "babel-ts"
+        }
+      }
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Open-Attestation/decentralized-renderer-react-components.git"
+    "url": "https://github.com/Open-Attestation/ethers-contract-hooks.git"
   }
 }

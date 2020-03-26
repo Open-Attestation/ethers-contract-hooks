@@ -1,0 +1,80 @@
+export const transactionExample = {
+  nonce: 12,
+  gasPrice: {
+    _hex: "0x04a817c800",
+  },
+  gasLimit: {
+    _hex: "0xafbf",
+  },
+  to: "0xbC860c24583e4771b37DE92BCa37e74b442f0855",
+  value: {
+    _hex: "0x00",
+  },
+  data: "0x0f75e81fd6df43b7372d4c696612f5ca454489f40e76ab6b0575110a9965f083fafd2d40",
+  chainId: 1585192385120,
+  v: 3170384770276,
+  r: "0xef1e7cf0bc01b33024aeef5c00bcb40da9aafca7f077fa91e381ceffab14c10a",
+  s: "0x2031ba77a56533ca3831b14b61bbac9b4bc12eef26623544f3cc7aed056c3239",
+  from: "0xFe3fEd8bcA1938efF9aef436aF13b31a84D2C237",
+  hash: "0x8418e15d561f95a1d8cc78e96e751b6368302180b7f33a881132484d238d76af",
+};
+
+export const receiptExample = {
+  to: "0xbC860c24583e4771b37DE92BCa37e74b442f0855",
+  from: "0xFe3fEd8bcA1938efF9aef436aF13b31a84D2C237",
+  contractAddress: null,
+  transactionIndex: 0,
+  gasUsed: {
+    _hex: "0xafbf",
+  },
+  logsBloom:
+    "0x00000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000100000000000000000000000000000000000400000000000000000010000000000000000000000000000004000000000000000000000000000000000000000000000000000000010000000000000000",
+  blockHash: "0x1d8ace9ea00e948ae062b3fec7062736f632305b71ef3a6397730c8f2107a42e",
+  transactionHash: "0x8418e15d561f95a1d8cc78e96e751b6368302180b7f33a881132484d238d76af",
+  logs: [
+    {
+      transactionIndex: 0,
+      blockNumber: 13,
+      transactionHash: "0x8418e15d561f95a1d8cc78e96e751b6368302180b7f33a881132484d238d76af",
+      address: "0xbC860c24583e4771b37DE92BCa37e74b442f0855",
+      topics: [
+        "0x01a1249f2caa0445b8391e02413d26f0d409dabe5330cd1d04d3d0801fc42db3",
+        "0xd6df43b7372d4c696612f5ca454489f40e76ab6b0575110a9965f083fafd2d40",
+      ],
+      data: "0x",
+      logIndex: 0,
+      blockHash: "0x1d8ace9ea00e948ae062b3fec7062736f632305b71ef3a6397730c8f2107a42e",
+      transactionLogIndex: 0,
+    },
+  ],
+  blockNumber: 13,
+  confirmations: 1,
+  cumulativeGasUsed: {
+    _hex: "0xafbf",
+  },
+  status: 1,
+  byzantium: true,
+  events: [
+    {
+      transactionIndex: 0,
+      blockNumber: 13,
+      transactionHash: "0x8418e15d561f95a1d8cc78e96e751b6368302180b7f33a881132484d238d76af",
+      address: "0xbC860c24583e4771b37DE92BCa37e74b442f0855",
+      topics: [
+        "0x01a1249f2caa0445b8391e02413d26f0d409dabe5330cd1d04d3d0801fc42db3",
+        "0xd6df43b7372d4c696612f5ca454489f40e76ab6b0575110a9965f083fafd2d40",
+      ],
+      data: "0x",
+      logIndex: 0,
+      blockHash: "0x1d8ace9ea00e948ae062b3fec7062736f632305b71ef3a6397730c8f2107a42e",
+      transactionLogIndex: 0,
+      args: {
+        "0": "0xd6df43b7372d4c696612f5ca454489f40e76ab6b0575110a9965f083fafd2d40",
+        document: "0xd6df43b7372d4c696612f5ca454489f40e76ab6b0575110a9965f083fafd2d40",
+        length: 1,
+      },
+      event: "DocumentIssued",
+      eventSignature: "DocumentIssued(bytes32)",
+    },
+  ],
+};
