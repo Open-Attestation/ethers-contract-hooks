@@ -1,5 +1,5 @@
 {
-  "name": "ethers-contract-hook",
+  "name": "@govtechsg/ethers-contract-hook",
   "version": "0.0.0-development",
   "publishConfig": {
     "access": "public"
