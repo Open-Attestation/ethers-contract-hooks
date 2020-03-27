@@ -9,8 +9,10 @@
   "module": "build/esm/index.js",
   "types": "build/esm/index.d.ts",
   "dependencies": {
-    "debug": "^4.1.1",
-    "ethers": "^4.0.46"
+    "debug": "^4.1.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --mode production && tsc --module es6 --declaration --outDir build/esm",
@@ -24,9 +26,6 @@
     "test:watch": "npm run test -- --watch",
     "semantic-release": "semantic-release",
     "ganache": "ganache-cli"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
