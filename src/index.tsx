@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { ContractTransaction, Contract } from "ethers";
 import { ContractReceipt } from "ethers/contract";
 
@@ -47,7 +47,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
     setError(undefined);
   };
 
-  const send = (async (...params: any[]) => {
+  const sendFn = (async (...params: any[]) => {
     resetState();
     const contractMethod = contract.functions[method as string];
     const deferredTx = contractMethod(...params);
@@ -65,7 +65,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
     }
   }) as T["functions"][S];
 
-  const call = (async (...params: any[]) => {
+  const callFn = (async (...params: any[]) => {
     resetState();
     const contractMethod = contract.functions[method as string];
     const deferredTx = contractMethod(...params);
@@ -83,6 +83,9 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
   const transactionHash = transaction?.hash;
   const events = receipt?.events;
   const errorMessage = error?.message;
+
+  const send = useCallback(sendFn, [contract, method]);
+  const call = useCallback(callFn, [contract, method]);
 
   return { state, call, events, send, receipt, transaction, transactionHash, errorMessage, error, value };
 }
