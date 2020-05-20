@@ -18,8 +18,8 @@ type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
 // }
 
 export function useContractFunctionHook<T extends Contract, S extends keyof T["functions"]>(
-  contract: T,
-  method: S
+  contract?: T,
+  method?: S
 ): {
   call: T["functions"][S];
   send: T["functions"][S];
@@ -48,6 +48,11 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
   };
 
   const sendFn = (async (...params: any[]) => {
+    if (!contract || !method) {
+      setState("ERROR");
+      setError(new Error("Contract or method is not specified"));
+      return;
+    }
     resetState();
     const contractMethod = contract.functions[method as string];
     const deferredTx = contractMethod(...params);
@@ -66,6 +71,11 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
   }) as T["functions"][S];
 
   const callFn = (async (...params: any[]) => {
+    if (!contract || !method) {
+      setState("ERROR");
+      setError(new Error("Contract or method is not specified"));
+      return;
+    }
     resetState();
     const contractMethod = contract.functions[method as string];
     const deferredTx = contractMethod(...params);

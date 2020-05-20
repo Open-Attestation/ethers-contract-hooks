@@ -53,7 +53,12 @@ const App = (): ReactElement => {
   useEffect(() => {
     initializeDocumentStore();
   }, []);
-  return contract ? <TestHook contract={contract} /> : <div>Initializing document store contract...</div>;
+  console.log(contract);
+  return contract ? (
+    <TestHook contract={contract} />
+  ) : (
+    <div>Initializing document store contract... You might need to run ganache with `npm run ganache`</div>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
