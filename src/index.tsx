@@ -1,6 +1,5 @@
-import { useState, useCallback } from "react";
-import { ContractTransaction, Contract } from "ethers";
-import { ContractReceipt } from "ethers/contract";
+import { Contract, ContractReceipt, ContractTransaction } from "ethers";
+import { useCallback, useState } from "react";
 
 export type ContractFunctionState = "UNINITIALIZED" | "INITIALIZED" | "PENDING_CONFIRMATION" | "CONFIRMED" | "ERROR";
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
