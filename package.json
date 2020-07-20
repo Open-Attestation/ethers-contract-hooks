@@ -13,7 +13,7 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "ethers": "^5.0.5"
+    "ethers": ">=5.0.5"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --mode production && tsc --module es6 --declaration --outDir build/esm",
