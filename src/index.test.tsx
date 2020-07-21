@@ -158,4 +158,26 @@ describe("useContractFunctionHook", () => {
       expect(result.current.errorMessage).toBeUndefined();
     });
   });
+
+  describe("reset", () => {
+    it("should reset all states", async () => {
+      onCallSuccessResponse();
+      const { result } = renderHook(() => useContractFunctionHook(mockContract, "mockMethod"));
+      await act(async () => {
+        await result.current.call("SOME_VALUE");
+      });
+      expect(result.current.state).toBe("CONFIRMED");
+      expect(result.current.value).toBe("RETURNED_VALUE");
+      expect(result.current.receipt).toBeUndefined();
+      expect(result.current.transaction).toBeUndefined();
+      expect(result.current.events).toBeUndefined();
+      expect(result.current.transactionHash).toBeUndefined();
+      expect(result.current.error).toBeUndefined();
+      expect(result.current.errorMessage).toBeUndefined();
+      await act(async () => {
+        await result.current.reset();
+      });
+      expect(result.current.state).toBe("UNINITIALIZED");
+    });
+  });
 });

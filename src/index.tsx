@@ -22,6 +22,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
 ): {
   call: T["functions"][S];
   send: T["functions"][S];
+  reset: () => void;
   state: ContractFunctionState;
   receipt?: ContractReceipt;
   transaction?: ContractTransaction;
@@ -95,6 +96,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
 
   const send = useCallback(sendFn, [contract, method]);
   const call = useCallback(callFn, [contract, method]);
+  const reset = useCallback(resetState, [contract, method]);
 
-  return { state, call, events, send, receipt, transaction, transactionHash, errorMessage, error, value };
+  return { state, call, events, send, receipt, transaction, transactionHash, errorMessage, error, value, reset };
 }
