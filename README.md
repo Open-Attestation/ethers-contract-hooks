@@ -2,6 +2,12 @@
 
 Automagically generate hooks from Ethers.js contract functions.
 
+## Install
+
+```sh
+npm i --save @govtechsg/ethers-contract-hook
+```
+
 ## Hooks
 
 ### useContractFunctionHook
