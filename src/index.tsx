@@ -46,6 +46,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
     setReceipt(undefined);
     setTransaction(undefined);
     setError(undefined);
+    setValue(undefined);
   };
 
   const sendFn = (async (...params: any[]) => {
