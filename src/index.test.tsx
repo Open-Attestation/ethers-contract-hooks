@@ -178,6 +178,7 @@ describe("useContractFunctionHook", () => {
         await result.current.reset();
       });
       expect(result.current.state).toBe("UNINITIALIZED");
+      expect(result.current.value).toBeUndefined();
     });
   });
 });
